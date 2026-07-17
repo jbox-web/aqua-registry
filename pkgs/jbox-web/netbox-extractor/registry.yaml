@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: jbox-web
+    repo_name: netbox-extractor
+    description: netbox-extractor - extract data from Netbox
+    asset: netbox-extractor-{{.OS}}-{{.Arch}}
+    format: raw
+    checksum:
+      type: github_release
+      asset: "{{.Asset}}.sha256"
+      algorithm: sha256
+    supported_envs:
+      - darwin
+      - linux

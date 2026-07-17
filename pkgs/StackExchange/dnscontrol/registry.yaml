@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: StackExchange
+    repo_name: dnscontrol
+    description: Infrastructure as code for DNS
+    asset: dnscontrol_{{trimV .Version}}_{{.OS}}_{{.Arch}}.{{.Format}}
+    format: tar.gz
+    checksum:
+      type: github_release
+      asset: checksums.txt
+      algorithm: sha256
+    overrides:
+      - goos: darwin
+        asset: dnscontrol_{{trimV .Version}}_{{.OS}}_all.{{.Format}}
+      - goos: windows
+        format: zip

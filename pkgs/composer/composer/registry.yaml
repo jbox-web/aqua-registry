@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: composer
+    repo_name: composer
+    description: Dependency Manager for PHP
+    asset: composer.phar
+    checksum:
+      type: http
+      url: https://getcomposer.org/download/{{trimV .Version}}/composer.phar.sha256sum
+      algorithm: sha256
+    files:
+      - name: composer
+        src: composer.phar
+    supported_envs:
+      - darwin
+      - linux
+      - windows

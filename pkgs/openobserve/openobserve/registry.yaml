@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: http
+    repo_owner: openobserve
+    repo_name: openobserve
+    description: Cloud native observability platform (logs, metrics, traces)
+    url: https://downloads.openobserve.ai/releases/openobserve/v{{trimV .Version}}/openobserve-v{{trimV .Version}}-{{.OS}}-{{.Arch}}.tar.gz
+    format: tar.gz
+    version_source: github_tag
+    files:
+      - name: openobserve
+    supported_envs:
+      - linux
+      - darwin

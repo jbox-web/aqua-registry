@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: grafana
+    repo_name: loki
+    description: Like Prometheus, but for logs
+    asset: loki-{{.OS}}-{{.Arch}}.zip
+    format: zip
+    checksum:
+      type: github_release
+      asset: SHA256SUMS
+      algorithm: sha256
+    files:
+      - name: loki
+        src: loki-{{.OS}}-{{.Arch}}
+  - name: grafana/promtail
+    type: github_release
+    repo_owner: grafana
+    repo_name: loki
+    description: Agent which ships the contents of local logs to a Loki instance
+    asset: promtail-{{.OS}}-{{.Arch}}.zip
+    format: zip
+    checksum:
+      type: github_release
+      asset: SHA256SUMS
+      algorithm: sha256
+    files:
+      - name: promtail
+        src: promtail-{{.OS}}-{{.Arch}}

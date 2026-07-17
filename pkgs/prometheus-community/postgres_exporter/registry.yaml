@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: prometheus-community
+    repo_name: postgres_exporter
+    description: A PostgreSQL metric exporter for Prometheus
+    asset: postgres_exporter-{{trimV .Version}}.{{.OS}}-{{.Arch}}.tar.gz
+    checksum:
+      type: github_release
+      asset: sha256sums.txt
+      algorithm: sha256
+    files:
+      - name: postgres_exporter
+        src: postgres_exporter-{{trimV .Version}}.{{.OS}}-{{.Arch}}/postgres_exporter

@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: go-acme
+    repo_name: lego
+    description: Let's Encrypt/ACME client and library written in Go
+    asset: lego_{{.Version}}_{{.OS}}_{{.Arch}}.{{.Format}}
+    format: tar.gz
+    checksum:
+      type: github_release
+      asset: lego_{{trimV .Version}}_checksums.txt
+      algorithm: sha256
+    overrides:
+      - goos: windows
+        format: zip

@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: smallstep
+    repo_name: certificates
+    description: A private certificate authority (X.509 & SSH) & ACME server for secure automated certificate management, so you can use TLS everywhere & SSO for SSH
+    asset: step-ca_{{.OS}}_{{.Arch}}.{{.Format}}
+    format: tar.gz
+    files:
+      - name: step-ca
+        src: step-ca_{{.OS}}_{{.Arch}}/step-ca
+    checksum:
+      type: github_release
+      asset: checksums.txt
+      algorithm: sha256
+    overrides:
+      - goos: windows
+        format: zip

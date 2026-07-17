@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: elbywan
+    repo_name: crystalline
+    description: A Language Server Protocol implementation for Crystal
+    asset: crystalline_{{.Arch}}-{{.OS}}.{{.Format}}
+    format: gz
+    replacements:
+      amd64: x86_64
+      darwin: apple-darwin
+      linux: unknown-linux-musl
+    files:
+      - name: crystalline
+    supported_envs:
+      - linux/amd64
+      - darwin

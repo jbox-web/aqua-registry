@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: oliver006
+    repo_name: redis_exporter
+    description: Prometheus Exporter for Valkey & Redis Metrics. Supports Valkey 9.x, 8.x, 7.x and various Redis versions
+    asset: redis_exporter-v{{trimV .Version}}.{{.OS}}-{{.Arch}}.tar.gz
+    checksum:
+      type: github_release
+      asset: sha256sums.txt
+      algorithm: sha256
+    files:
+      - name: redis_exporter
+        src: redis_exporter-v{{trimV .Version}}.{{.OS}}-{{.Arch}}/redis_exporter

@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: nginx
+    repo_name: nginx-prometheus-exporter
+    description: NGINX Prometheus Exporter for NGINX and NGINX Plus
+    asset: nginx-prometheus-exporter_{{trimV .Version}}_{{.OS}}_{{.Arch}}.tar.gz
+    checksum:
+      type: github_release
+      asset: nginx-prometheus-exporter_{{trimV .Version}}_checksums.txt
+      algorithm: sha256
+    files:
+      - name: nginx_exporter
+        src: nginx-prometheus-exporter

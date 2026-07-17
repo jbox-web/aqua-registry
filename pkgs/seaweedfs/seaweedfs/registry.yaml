@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: seaweedfs
+    repo_name: seaweedfs
+    description: SeaweedFS is a fast distributed storage system for blobs, objects, files, and data lake
+    asset: "{{.OS}}_{{.Arch}}.{{.Format}}"
+    format: tar.gz
+    checksum:
+      type: github_release
+      asset: "{{.Asset}}.md5"
+      algorithm: md5
+    files:
+      - name: weed
+        src: weed
+    overrides:
+      - goos: windows
+        format: zip
+    supported_envs:
+      - darwin
+      - linux
+      - windows/amd64

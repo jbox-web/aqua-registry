@@ -1,0 +1,34 @@
+name: CI
+
+permissions: {}
+
+on:
+  push:
+    paths-ignore: ['**.md']
+  pull_request:
+    paths-ignore: ['**.md']
+  schedule:
+    - cron: '0 0 1 * *'   # monthly
+  workflow_dispatch:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, ubuntu-24.04-arm, macos-26, macos-26-intel]
+    runs-on: ${{ matrix.os }}
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      # point mise's aqua backend at THIS checked-out registry (before the baked-in official one)
+      MISE_AQUA_REGISTRIES: file://${{ github.workspace }}
+      MISE_AQUA_REGISTRY_CACHE_TTL: '0'
+      # used below to gate packages whose supported_envs excludes a leg of the matrix
+      MATRIX_OS: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: jdx/mise-action@v4      # provisions the aqua CLI from mise.toml (for parity; the backend is built into mise)
+      - name: Smoke test every package via mise's aqua backend
+        run: ./scripts/smoke-test.sh
