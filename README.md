@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 A custom [aqua](https://aquaproj.github.io/) registry that replicates the `vfox-*` mise plugins
-published under the [jbox-web](https://github.com/jbox-web) org. It defines 30 CLI tools
+published under the [jbox-web](https://github.com/jbox-web) org. It defines 31 CLI tools
 (observability/infra binaries plus jbox-web internal tools) as aqua `github_release` /
 `http` packages, with the same binaries, checksum verification, and platform coverage the
 vfox plugins provided.
@@ -109,6 +109,7 @@ All references below are `aqua:<repo_owner>/<repo_name>` as declared in `registr
 | envtpl | `aqua:jbox-web/envtpl.cr` |
 | netbox-extractor | `aqua:jbox-web/netbox-extractor` |
 | squarectl | `aqua:jbox-web/squarectl` |
+| ssherlock | `aqua:jbox-web/ssherlock` |
 | stacker | `aqua:jbox-web/stacker` |
 
 ## Notes

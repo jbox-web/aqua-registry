@@ -72,6 +72,7 @@ check "jbox-web/docker-health@1.3.0" 1.3.0 docker-health --version
 check "jbox-web/envtpl.cr@1.6.0" 1.6.0 envtpl --version
 check "jbox-web/netbox-extractor@1.0.1" 1.0.1 netbox-extractor --version
 check "jbox-web/squarectl@1.6.0" 1.6.0 squarectl --version
+check "jbox-web/ssherlock@1.0.0" 1.0.0 ssherlock --version
 check "jbox-web/stacker@1.2.0" 1.2.0 stacker --version
 check "Infisical/cli@0.43.60" 0.43.60 infisical --version
 check "openobserve/openobserve@0.70.0" 0.70.0 openobserve --version
