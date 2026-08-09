@@ -10,8 +10,10 @@ CLI tool released on GitHub (observability/infra binaries: prometheus, loki, yq,
 exporters, plus jbox-web internal tools), with the same binaries, checksum verification, and
 platform coverage the vfox plugins provided.
 
-The migration is complete: all 30 packages are defined under `pkgs/` and inlined into the root
-`registry.yaml`. When adding or fixing a tool, follow the per-tool workflow (procedure P) below;
+The migration is complete, and tools have since been added beyond that original vfox set: every
+package is defined under `pkgs/` and inlined into the root `registry.yaml` (`find pkgs -name
+registry.yaml | wc -l` is the count of record — do not hardcode it here).
+When adding or fixing a tool, follow the per-tool workflow (procedure P) below;
 `README.md` documents the consumption path and the full tool index.
 
 ## Architecture (critical invariants)
