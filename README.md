@@ -106,6 +106,7 @@ All references below are `aqua:<repo_owner>/<repo_name>` as declared in `registr
 | Tool | Reference |
 | --- | --- |
 | apt-larder | `aqua:jbox-web/apt-larder` |
+| cronaute | `aqua:jbox-web/cronaute` |
 | docker-health | `aqua:jbox-web/docker-health` |
 | envtpl | `aqua:jbox-web/envtpl.cr` |
 | netbox-extractor | `aqua:jbox-web/netbox-extractor` |

@@ -210,6 +210,19 @@ packages:
       - linux
   - type: github_release
     repo_owner: jbox-web
+    repo_name: cronaute
+    description: cronaute - a cron daemon for containers, one static binary with a read-only dashboard
+    asset: cronaute-{{.OS}}-{{.Arch}}
+    format: raw
+    checksum:
+      type: github_release
+      asset: "{{.Asset}}.sha256"
+      algorithm: sha256
+    supported_envs:
+      - darwin
+      - linux
+  - type: github_release
+    repo_owner: jbox-web
     repo_name: docker-health
     description: docker-health - a simple healthcheck tool for Docker containers
     asset: docker-health-{{.OS}}-{{.Arch}}
