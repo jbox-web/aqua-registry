@@ -419,6 +419,23 @@ packages:
       - name: promtool
         src: prometheus-{{trimV .Version}}.{{.OS}}-{{.Arch}}/promtool
   - type: github_release
+    repo_owner: purpleidea
+    repo_name: mgmt
+    description: Next generation distributed, event-driven, parallel config management
+    asset: mgmt-{{.OS}}-{{.Arch}}-{{.Version}}
+    format: raw
+    # Tags carry no leading "v" (1.1.0, not v1.1.0), so {{.Version}} interpolates straight
+    # into the asset name.
+    checksum:
+      type: github_release
+      asset: SHA256SUMS.asc
+      algorithm: sha256
+    # linux/amd64 only, and deliberately so: upstream published mgmt-linux-arm64 for 1.0.0 and
+    # dropped it right after — 1.0.1, 1.0.2 and 1.1.0 ship a single linux-amd64 binary. There has
+    # never been a darwin build, so this package cannot be smoke-tested on a macOS host.
+    supported_envs:
+      - linux/amd64
+  - type: github_release
     repo_owner: seaweedfs
     repo_name: seaweedfs
     description: SeaweedFS is a fast distributed storage system for blobs, objects, files, and data lake
