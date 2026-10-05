@@ -251,6 +251,19 @@ packages:
       - linux
   - type: github_release
     repo_owner: jbox-web
+    repo_name: icinga-pagerduty
+    description: icinga-pagerduty - delivers Icinga 2 notifications to PagerDuty through a persistent local queue
+    asset: icinga-pagerduty-{{.OS}}-{{.Arch}}
+    format: raw
+    checksum:
+      type: github_release
+      asset: "{{.Asset}}.sha256"
+      algorithm: sha256
+    supported_envs:
+      - darwin
+      - linux
+  - type: github_release
+    repo_owner: jbox-web
     repo_name: netbox-extractor
     description: netbox-extractor - extract data from Netbox
     asset: netbox-extractor-{{.OS}}-{{.Arch}}

@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: jbox-web
+    repo_name: icinga-pagerduty
+    description: icinga-pagerduty - delivers Icinga 2 notifications to PagerDuty through a persistent local queue
+    asset: icinga-pagerduty-{{.OS}}-{{.Arch}}
+    format: raw
+    checksum:
+      type: github_release
+      asset: "{{.Asset}}.sha256"
+      algorithm: sha256
+    supported_envs:
+      - darwin
+      - linux

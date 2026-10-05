@@ -109,6 +109,7 @@ All references below are `aqua:<repo_owner>/<repo_name>` as declared in `registr
 | cronaute | `aqua:jbox-web/cronaute` |
 | docker-health | `aqua:jbox-web/docker-health` |
 | envtpl | `aqua:jbox-web/envtpl.cr` |
+| icinga-pagerduty | `aqua:jbox-web/icinga-pagerduty` |
 | netbox-extractor | `aqua:jbox-web/netbox-extractor` |
 | squarectl | `aqua:jbox-web/squarectl` |
 | ssherlock | `aqua:jbox-web/ssherlock` |
