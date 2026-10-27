@@ -4,6 +4,11 @@ packages:
     repo_owner: php
     repo_name: frankenphp
     description: The modern PHP app server
+    # On Linux the glibc-linked "-gnu" build is installed instead of the fully
+    # static musl one: only it can load dynamic PHP extensions such as Xdebug,
+    # which code coverage needs. It requires glibc >= 2.28, so it does not run
+    # on Alpine. Upstream publishes it from v1.5.0 on.
+    version_constraint: semver(">= 1.5.0")
     asset: frankenphp-{{.OS}}-{{.Arch}}
     format: raw
     replacements:
@@ -11,8 +16,16 @@ packages:
       darwin: mac
     overrides:
       - goos: linux
+        asset: frankenphp-{{.OS}}-{{.Arch}}-gnu
         replacements:
           arm64: aarch64
     supported_envs:
       - darwin
       - linux
+    version_overrides:
+      # Before v1.5.0 only the musl build exists.
+      - version_constraint: "true"
+        overrides:
+          - goos: linux
+            replacements:
+              arm64: aarch64
