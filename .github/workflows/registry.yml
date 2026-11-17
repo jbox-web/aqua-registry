@@ -1,0 +1,60 @@
+name: Registry
+
+# mise only reads the root registry.yaml, generated from pkgs/ by
+# scripts/build-registry.sh. A package pushed to pkgs/ without it, by hand or
+# by a release (crystalreleaser pushes pkgs/<owner>/<repo>/registry.yaml on
+# every release of a tool), would never be seen: this regenerates the root and
+# commits it back.
+#
+# The commit is made with the workflow's own token, so it starts no other
+# workflow: the smoke test of ci.yml runs on the push to pkgs/ that triggered
+# this one, not on the regenerated root.
+
+permissions: {}
+
+on:
+  push:
+    branches: [master]
+    paths: ['pkgs/**']
+  workflow_dispatch:
+
+# Two packages pushed one after the other regenerate one after the other: the
+# second run starts from the first one's commit.
+concurrency:
+  group: registry
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      # Push the regenerated registry.yaml.
+      contents: write
+    steps:
+      # Credentials are kept here, unlike in ci.yml: they are what the push
+      # below uses.
+      - uses: actions/checkout@v7
+        with:
+          ref: master
+
+      - name: Regenerate registry.yaml
+        run: ./scripts/build-registry.sh
+
+      # A package whose YAML does not concatenate (a list not indented under
+      # `packages:`, for one) must fail here, not in every mise that reads the
+      # registry.
+      - name: Check that the registry still parses
+        run: ruby -ryaml -e 'packages = YAML.load_file("registry.yaml").fetch("packages"); puts "#{packages.size} packages"'
+
+      - name: Commit and push it when it changed
+        run: |
+          if git diff --quiet -- registry.yaml; then
+            echo "registry.yaml is up to date"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add registry.yaml
+          git commit -m "Regenerate registry.yaml from pkgs/"
+          git push origin HEAD:master

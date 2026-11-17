@@ -223,6 +223,22 @@ packages:
       - linux
   - type: github_release
     repo_owner: jbox-web
+    repo_name: crystalreleaser
+    description: Release automation for Crystal projects
+    version_constraint: "true"
+    asset: "crystalreleaser_{{trimV .Version}}_{{.OS}}_{{.Arch}}.tar.gz"
+    format: tar.gz
+    files:
+      - name: crystalreleaser
+    supported_envs:
+      - darwin
+      - linux
+    checksum:
+      type: github_release
+      asset: checksums.txt
+      algorithm: sha256
+  - type: github_release
+    repo_owner: jbox-web
     repo_name: docker-health
     description: docker-health - a simple healthcheck tool for Docker containers
     asset: docker-health-{{.OS}}-{{.Arch}}

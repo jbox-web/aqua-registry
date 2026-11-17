@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 A custom [aqua](https://aquaproj.github.io/) registry that replicates the `vfox-*` mise plugins
-published under the [jbox-web](https://github.com/jbox-web) org. It defines 32 CLI tools
+published under the [jbox-web](https://github.com/jbox-web) org. It defines 35 CLI tools
 (observability/infra binaries plus jbox-web internal tools) as aqua `github_release` /
 `http` packages, with the same binaries, checksum verification, and platform coverage the
 vfox plugins provided.
@@ -107,6 +107,7 @@ All references below are `aqua:<repo_owner>/<repo_name>` as declared in `registr
 | --- | --- |
 | apt-larder | `aqua:jbox-web/apt-larder` |
 | cronaute | `aqua:jbox-web/cronaute` |
+| crystalreleaser | `aqua:jbox-web/crystalreleaser` |
 | docker-health | `aqua:jbox-web/docker-health` |
 | envtpl | `aqua:jbox-web/envtpl.cr` |
 | icinga-pagerduty | `aqua:jbox-web/icinga-pagerduty` |
@@ -128,7 +129,11 @@ All references below are `aqua:<repo_owner>/<repo_name>` as declared in `registr
 
 - Package sources live one per upstream repo, under `pkgs/<upstream-owner>/<upstream-repo>/registry.yaml`.
 - The root `registry.yaml` is **generated** by `scripts/build-registry.sh` from everything under
-  `pkgs/`. Never hand-edit the root file — regenerate it after any change under `pkgs/`.
+  `pkgs/`. Never hand-edit the root file — regenerate it after any change under `pkgs/`. A push to
+  `master` that touches `pkgs/` regenerates and commits it on its own (`.github/workflows/registry.yml`).
+- Some packages are pushed by the release of their tool, with
+  [crystalreleaser](https://github.com/jbox-web/crystalreleaser) (today: `crystalreleaser`): change
+  them in that tool's `.crystalreleaser.yml`, an edit here is overwritten by its next release.
 - Do **not** use `aquaproj/registry-tool` (`argd`) to scaffold or generate packages: it is built
   to contribute to the official `aquaproj/aqua-registry` and pulls in the entire upstream
   registry. Use aqua's own `aqua gr <owner>/<repo>` (prints a package template to stdout, no git

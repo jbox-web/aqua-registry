@@ -69,6 +69,7 @@ check "grafana/promtail@3.5.12" 3.5.12 promtail --version
 check "seaweedfs/seaweedfs@4.30" 4.30 weed version
 check "jbox-web/apt-larder@1.0.0" 1.0.0 apt-larder --version
 check "jbox-web/cronaute@1.0.0" 1.0.0 cronaute --version
+check "jbox-web/crystalreleaser@0.1.0" 0.1.0 crystalreleaser --version
 check "jbox-web/docker-health@1.3.0" 1.3.0 docker-health --version
 check "jbox-web/envtpl.cr@1.6.0" 1.6.0 envtpl --version
 check "jbox-web/icinga-pagerduty@0.1.0" 0.1.0 icinga-pagerduty --version

@@ -20,7 +20,18 @@ When adding or fixing a tool, follow the per-tool workflow (procedure P) below;
 
 - **The root `registry.yaml` is a GENERATED monolith — never hand-edit it.** aqua registry files
   have no `import` field, so every package is inlined into one file. Regenerate it with
-  `./scripts/build-registry.sh` after ANY edit under `pkgs/`.
+  `./scripts/build-registry.sh` after ANY edit under `pkgs/`. On `master`,
+  `.github/workflows/registry.yml` does it for every push that touches `pkgs/`, checks that the
+  result still parses, and commits it back: a package pushed by a release lands without anyone
+  regenerating by hand.
+- **Packages written by a release, not by hand:** jbox-web tools released with
+  [crystalreleaser](https://github.com/jbox-web/crystalreleaser) push their own
+  `pkgs/jbox-web/<repo>/registry.yaml` on every release (today: `crystalreleaser`). Edit their
+  `aqua:` section in that tool's `.crystalreleaser.yml` instead: an edit here is overwritten by
+  the next release.
+- **Every package file indents its list under `packages:`** (`  - type: ...`), as aqua's own
+  registry does. `build-registry.sh` concatenates the entries as they are, and one list written
+  indentless (`- type:` at column 0) makes the whole monolith invalid YAML.
 - **Per-package sources live under `pkgs/<upstream-owner>/<upstream-repo>/`**, classified by the
   **upstream** owner (not `jbox-web`):
   - `registry.yaml` — the package definition (source of truth, hand-edited)
