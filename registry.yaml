@@ -252,6 +252,22 @@ packages:
       - linux
   - type: github_release
     repo_owner: jbox-web
+    repo_name: donico
+    description: "Build, test, push and clean Docker images from a donico.yml"
+    version_constraint: "true"
+    asset: "donico_{{trimV .Version}}_{{.OS}}_{{.Arch}}.tar.gz"
+    format: tar.gz
+    files:
+      - name: donico
+    supported_envs:
+      - darwin
+      - linux
+    checksum:
+      type: github_release
+      asset: checksums.txt
+      algorithm: sha256
+  - type: github_release
+    repo_owner: jbox-web
     repo_name: envtpl.cr
     description: envtpl - render a template with environment variables
     asset: envtpl-{{.OS}}-{{.Arch}}
