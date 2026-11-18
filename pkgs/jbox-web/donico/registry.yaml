@@ -9,6 +9,8 @@ packages:
     format: tar.gz
     files:
       - name: donico
+      - name: donico-manager
+        src: donico
     supported_envs:
       - darwin
       - linux
